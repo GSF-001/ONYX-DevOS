@@ -197,9 +197,7 @@ npm run dev
 | `PLANNED` | Command Palette (`Ctrl+K`) |
 | `PLANNED` | Settings (theme switcher: CRT / Modern / Pixel) |
 
-Detailed progress is tracked in [Issues](../../issues) and [Projects](../../projects).
-
-Detailed progress is tracked in [Issues](../../issues) and [Projects](../../projects).
+Detailed progress is tracked in [Issues](../../issues) 
 
 ---
 
