@@ -1,9 +1,23 @@
 <div align="center">
 
-     💫 O N Y X — DevOS
-### Engineering Workstation
-
+   
+      💫 ONYX — DevOS
+ 
+ [ Engineering Workstation ]
 **Retro look. Modern power. Zero noise.**
+
+```
+BOOT
+   ↓
+CONNECT
+   ↓
+WORK
+```
+
+**The engineering workstation for GitHub.**
+
+</div>
+
 <p align="center"><a href="./LICENSE"><img src="https://img.shields.io/github/license/GSF-001/ONYX-DevOS?style=for-the-badge&label=LICENSE&labelColor=000000&color=6e6e6e" /></a> <a href="#05--architecture"><img src="https://img.shields.io/badge/STATUS-OPERATIONAL-00C853?style=for-the-badge&labelColor=000000" /></a></p>
 
 ---
