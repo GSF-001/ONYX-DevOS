@@ -8,6 +8,8 @@ import { reportRoutes } from "./reports.js";
 import { teamRoutes } from "./team.js";
 import { activityRoutes } from "./activity.js";
 import { settingsRoutes } from "./settings.js";
+import { communityRoutes } from "./community.js";
+import { groupsRoutes } from "./groups.js";
 
 export async function apiRoutes(app: FastifyInstance): Promise<void> {
   await app.register(dashboardRoutes);
@@ -19,4 +21,6 @@ export async function apiRoutes(app: FastifyInstance): Promise<void> {
   await app.register(teamRoutes);
   await app.register(activityRoutes);
   await app.register(settingsRoutes);
+  await app.register(communityRoutes);
+  await app.register(groupsRoutes);
 }
