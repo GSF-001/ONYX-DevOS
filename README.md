@@ -1,6 +1,6 @@
 <div align="center">
 
-# ⬛ O N Y X — DevOS
+#  O N Y X — DevOS
 ### Engineering Workstation
 
 **Retro look. Modern power. Zero noise.**
@@ -8,10 +8,10 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-black.svg)](./LICENSE)
 [![Node](https://img.shields.io/badge/node-%E2%89%A520-339933?logo=node.js&logoColor=white)](https://nodejs.org)
 [![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Status](https://img.shields.io/badge/status-in%20development-yellow)](#05--project-status)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](#08--contributing)
 [![Zero AI](https://img.shields.io/badge/AI%20required-0%25-black)](#02--philosophy)
 
-`01` [Overview](#01--overview) · `02` [Philosophy](#02--philosophy) · `03` [Features](#03--features) · `04` [Preview](#04--preview) · `05` [Project Status](#05--project-status) · `06` [Vision](#06--vision--beyond-v10) · `07` [Architecture](#07--architecture) · `08` [Tech Stack](#08--tech-stack) · `10` [Getting Started](#10--getting-started)
+`01` [Overview](#01--overview) · `02` [Philosophy](#02--philosophy) · `03` [Features](#03--features) · `04` [Preview](#04--preview) · `05` [Architecture](#05--architecture) · `06` [Tech Stack](#06--tech-stack) · `07` [Getting Started](#07--getting-started) · `08` [Contributing](#08--contributing)
 
 </div>
 
@@ -70,52 +70,7 @@ No AI API key to buy, no subscription to an LLM. Every insight (*Bus Factor, Rev
 
 ---
 
-## `05` · Project Status
-
-ONYX is under active development. Here's the honest state of things — **the backend foundation is solid, but the desktop UI doesn't exist yet.** This is real progress, not marketing copy:
-
-```text
-SYSTEM STATUS ─────────────────────────────────────────
-  AUTH  (OAuth · JWT · CSRF · Session)     [██████████] 100%
-  DATABASE  (Schema · Auto-migration)      [██████████] 100%
-  WEBHOOK  (Verify → Dispatch → Handlers)  [██████████] 100%
-  WEBSOCKET  (Rooms · Broadcast · Live)    [██████████] 100%
-  SCORING ENGINE  (Bus Factor, etc.)       [░░░░░░░░░░]   0%
-  REST ROUTES  (dashboard, repo, PR, etc.) [░░░░░░░░░░]   0%
-  DESKTOP + WINDOW MANAGER                 [░░░░░░░░░░]   0%
-  APPLICATIONS  (12 app modules)           [░░░░░░░░░░]   0%
-────────────────────────────────────────────────────────
-  OVERALL                                  [█████░░░░░]  ~50%
-```
-
-What already works today: **GitHub login, incoming webhooks, data persisted to the database, real-time broadcast.** What's still missing: **the actual interface.** This repo is being built module by module, in the open — follow progress in [Issues](../../issues).
-
----
-
-## `06` · Vision — Beyond v1.0
-
-The `v1.0` roadmap is focused on finishing the desktop OS itself. But the long-term direction for ONYX is bigger than "a dashboard for one team" — two features define that north star:
-
-### `06.1` — ONYX Community *(public, anonymous)*
-
-A public space inside ONYX where engineers can join using an **anonymous handle** — no real name, no company name, no exposed private repos. Inside it, anyone can **opt in to share a snapshot of their dashboard** (Health Score, Bus Factor, review streaks, and more) to casually benchmark against the community, learn how other teams work, or just show off a 92 score without saying whose it is.
-
-> Privacy by design: only the stats a user chooses to share are visible — never raw repository data.
-
-### `06.2` — ONYX Bounty Hub
-
-Two directions at once:
-
-- **Aggregating bounties from the outside** — ONYX pulls bounty-labeled issues from GitHub (and related bounty platforms) into a single place, so people don't have to hunt through repositories one by one. Filterable by language, payout, and tags.
-- **Posting bounties from the inside** — individuals or companies can post a bounty directly in ONYX, attached to a specific issue or repository, without building their own system for it.
-
-The end goal: ONYX becomes not just a place to *watch* your team's work, but also a place to *find* new work — for anyone.
-
-> 🔭 Both features above are still at the concept stage and don't exist in the codebase yet. They're documented here to make the project's direction clear from day one — design discussion and contributions are very welcome in [Discussions](../../discussions).
-
----
-
-## `07` · Architecture
+## `05` · Architecture
 
 ```mermaid
 flowchart LR
@@ -147,7 +102,7 @@ Every GitHub event (push, PR, review, issue, check run) arrives through `webhook
 
 ---
 
-## `08` · Tech Stack
+## `06` · Tech Stack
 
 | Layer | Technology |
 |---|---|
@@ -156,14 +111,10 @@ Every GitHub event (push, PR, review, issue, check run) arrives through `webhook
 | Database | PostgreSQL · [Drizzle ORM](https://orm.drizzle.team/) |
 | Realtime | [Socket.IO](https://socket.io/) |
 | Auth | GitHub OAuth 2.0 · JWT (access + refresh) · CSRF double-submit cookie |
-| Deployment | Vercel (web) · Railway (server + db) — see [`docs/deploy.md`](./docs/deploy.md) |
-
----
-
-## `09` · Project Structure
+| Deployment | Vercel (web) · Railway (server + db) |
 
 <details>
-<summary><strong>apps/server/src</strong> — API, webhooks, scoring engine, database</summary>
+<summary><strong>Project Structure</strong></summary>
 
 ```
 server/src/
@@ -175,13 +126,7 @@ server/src/
 ├── webhook/         # Verify signature → parse → dispatch → onPush/onPullRequest/etc.
 ├── websocket/       # Socket.IO server: rooms, broadcast, heartbeat, notifications
 └── index.ts         # Entrypoint: auto-migrate → listen
-```
-</details>
 
-<details>
-<summary><strong>apps/web/src</strong> — Landing page, boot screen, desktop OS, applications</summary>
-
-```
 web/src/
 ├── auth/            # OAuth callback, repository authorization, auth guard
 ├── boot/            # Boot sequence, shutdown/restart screen
@@ -190,21 +135,21 @@ web/src/
 ├── websocket/       # Socket client, provider, event subscription hook
 ├── theme/           # Design tokens + 3 themes (CRT / Modern / Pixel)
 ├── shared/          # Components, hooks, API client, types, utils shared across apps
-├── App.tsx / main.tsx / router.tsx / index.css
+└── App.tsx / main.tsx / router.tsx / index.css
 ```
 </details>
 
 ---
 
-## `10` · Getting Started
+## `07` · Getting Started
 
-### `10.1` Prerequisites
+### Prerequisites
 
 - Node.js ≥ 20
 - PostgreSQL (local, Docker, or cloud such as [Neon](https://neon.tech))
 - A [GitHub OAuth App](https://github.com/settings/developers)
 
-### `10.2` Clone & install
+### Clone & install
 
 ```bash
 git clone https://github.com/GSF-001/ONYX-DevOS.git
@@ -212,7 +157,7 @@ cd ONYX-DevOS
 npm install
 ```
 
-### `10.3` Environment variables
+### Environment variables
 
 ```bash
 cp apps/server/.env.example apps/server/.env
@@ -226,11 +171,9 @@ cp apps/server/.env.example apps/server/.env
 | `JWT_ACCESS_SECRET` / `JWT_REFRESH_SECRET` | Any long random string |
 | `APP_URL` | Frontend URL, `http://localhost:5173` for local dev |
 
-### `10.4` Database
+Database schema is created/synced automatically on server start — no manual migration command needed.
 
-No manual migration command needed — the schema is created/synced automatically on every server start (see `db/migrations.ts`).
-
-### `10.5` Run
+### Run
 
 ```bash
 npm run dev
@@ -241,11 +184,9 @@ npm run dev
 | Web | http://localhost:5173 |
 | API | http://localhost:4000 |
 
-Deploying to production without ever touching a terminal? Follow [`docs/deploy.md`](./docs/deploy.md) (Vercel + Railway + Neon, all through the web dashboard).
-
 ---
 
-## `11` · Contributing
+## `08` · Contributing
 
 Contributions are welcome — read [`CONTRIBUTING.md`](./CONTRIBUTING.md) *(coming soon)* before opening a PR.
 
@@ -258,19 +199,18 @@ Contributions are welcome — read [`CONTRIBUTING.md`](./CONTRIBUTING.md) *(comi
 
 ---
 
-## `12` · Links
+## Links
 
 | | |
 |---|---|
 | Documentation | [`/docs`](./docs) |
 | Report a Bug | [Issues](../../issues) |
 | Discussions | [Discussions](../../discussions) |
-| Changelog | [`CHANGELOG.md`](./CHANGELOG.md) |
 | License | [`LICENSE`](./LICENSE) |
 
 ---
 
-## `13` · License
+## License
 
 Released under the **MIT License** — use, fork, and modify freely. See [`LICENSE`](./LICENSE) for full details.
 
