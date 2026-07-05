@@ -3,6 +3,7 @@ import { Taskbar } from "../taskbar";
 import { CommandPalette } from "../command-palette";
 import { NotificationManager, Popup, LiveNotification } from "../notifications";
 import { ThemeProvider } from "../theme";
+import { Desktop } from "../desktop";
 
 /**
  * Root desktop composition. Every piece here is real (window-manager,
@@ -11,8 +12,11 @@ import { ThemeProvider } from "../theme";
  * context-menu. Until that's built, DesktopIconGrid below is a minimal
  * functional stand-in: double-click opens the app, nothing fancier.
  */
+import { Desktop } from "../desktop";
+
 export function DesktopPage() {
-  return (
+  return <Desktop />;
+}
     <ThemeProvider>
       <NotificationManager>
         <div className="win-desktop" style={{ height: "100vh", width: "100vw" }}>
