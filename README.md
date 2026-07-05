@@ -1,6 +1,6 @@
 <div align="center">
 
-# ⬛ O N Y X — DevOS
+#  O N Y X — DevOS
 ### Engineering Workstation
 
 **Retro look. Modern power. Zero noise.**
@@ -11,7 +11,7 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](#08--contributing)
 [![Zero AI](https://img.shields.io/badge/AI%20required-0%25-black)](#02--philosophy)
 
-`01` [Overview](#01--overview) · `02` [Philosophy](#02--philosophy) · `03` [Features](#03--features) · `04` [Preview](#04--preview) · `05` [Architecture](#05--architecture) · `06` [Tech Stack](#06--tech-stack) · `07` [Getting Started](#07--getting-started) · `08` [Contributing](#08--contributing)
+`01` [Overview](#01--overview) · `02` [Philosophy](#02--philosophy) · `03` [Features](#03--features) · `04` [Preview](#04--preview) · `05` [Architecture](#05--architecture) · `06` [Tech Stack](#06--tech-stack) · `07` [Getting Started](#07--getting-started) · `08` [Roadmap](#08--roadmap) · `09` [Contributing](#09--contributing)
 
 </div>
 
@@ -139,6 +139,10 @@ web/src/
 ```
 </details>
 
+> The tree above only covers what's implemented so far. The full planned structure (including `applications/`, `taskbar/`, `terminal/`, `desktop/`, and more) lives in [`struktur awal.md`](./struktur%20awal.md).
+
+> 📌 Full structure (including `applications/`, `taskbar/`, `terminal/`, etc.) is documented in [`struktur awal.md`](./struktur%20awal.md).
+
 ---
 
 ## `07` · Getting Started
@@ -186,7 +190,25 @@ npm run dev
 
 ---
 
-## `08` · Contributing
+## `08` · Roadmap
+
+- [x] Auth — GitHub OAuth, JWT, session, CSRF
+- [x] Database schema + auto-migration
+- [x] Webhook pipeline (verify → parse → dispatch → handlers)
+- [x] WebSocket real-time layer
+- [ ] Scoring engine (Bus Factor, Review Health, Commit Decay, etc.)
+- [ ] REST routes (dashboard, repository, PRs, reviews, insights, etc.)
+- [ ] Landing page
+- [ ] Boot sequence + Desktop + Window Manager
+- [ ] Applications (Dashboard, Repository, PRs, Reviews, Issues, Insights, Team, Reports, Heatmap, Terminal)
+- [ ] Command Palette (`Ctrl+K`)
+- [ ] Settings (theme switcher: CRT / Modern / Pixel)
+
+Detailed progress is tracked in [Issues](../../issues) and [Projects](../../projects).
+
+---
+
+## `09` · Contributing
 
 Contributions are welcome — read [`CONTRIBUTING.md`](./CONTRIBUTING.md) *(coming soon)* before opening a PR.
 
@@ -205,6 +227,7 @@ Contributions are welcome — read [`CONTRIBUTING.md`](./CONTRIBUTING.md) *(comi
 |---|---|
 | Documentation | [`/docs`](./docs) |
 | Report a Bug | [Issues](../../issues) |
+| Roadmap / Project Board | [Projects](../../projects) |
 | Discussions | [Discussions](../../discussions) |
 | License | [`LICENSE`](./LICENSE) |
 
