@@ -29,7 +29,7 @@ WORK
 <div align="center">
 
   ##### ONYX Preview
-![alt text](https://github.com/GSF-001/ONYX-DevOS/blob/main/OVERviews.png?raw=true)
+![alt text](https://github.com/GSF-001/ONYX-DevOS/blob/main/file_00000000f1a47207bac6f5d32a9630bd.png?)
 
 ---
 
