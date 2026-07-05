@@ -1,0 +1,5 @@
+/* App-level wrapper styles only — the actual terminal look (green on
+   black, monospace) is set inline in terminal/Terminal.tsx. */
+.terminal-app-root {
+  height: 100%;
+}
