@@ -1,3 +1,21 @@
-"devDependencies": {
-  "@vercel/node": "^3.2.0"
+
+cat > package.json << 'EOF'
+{
+  "name": "onyx-devos-server",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "dev": "node index.js"
+  },
+  "devDependencies": {
+    "@vercel/node": "^3.2.0",
+    "drizzle-kit": "^0.24.0"
+  },
+  "dependencies": {
+    "drizzle-orm": "^0.33.0",
+    "dotenv": "^16.4.5"
+  }
 }
+EOF
