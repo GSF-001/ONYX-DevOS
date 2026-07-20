@@ -1,5 +1,3 @@
-
-cat > package.json << 'EOF'
 {
   "name": "onyx-devos-server",
   "version": "1.0.0",
@@ -18,4 +16,3 @@ cat > package.json << 'EOF'
     "dotenv": "^16.4.5"
   }
 }
-EOF
