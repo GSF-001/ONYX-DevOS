@@ -1,37 +1,18 @@
 import { useEffect, useRef, useState } from "react";
 import { GroupsAPI } from "./GroupsAPI";
 import type { ChatMessage } from "./GroupsTypes";
-import { useWebSocket, useSocketEvent } from "../../shared/hooks";
+import { usePolling } from "../../shared/hooks";
 import { IdentityAvatar } from "../../shared/components";
 import { formatRelativeTime } from "../../shared/utils";
 
-interface ChatProps {
-  groupId: number;
-}
-
-/**
- * Real-time chat: loads history via REST, subscribes to the group's
- * websocket room (`group:{id}`) for live incoming messages, and posts new
- * messages via REST (the server then broadcasts to the room — see
- * routes/groups.ts's POST /groups/:groupId/messages handler).
- */
-export function Chat({ groupId }: ChatProps) {
+export function Chat({ groupId }: { groupId: number }) {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState("");
   const bottomRef = useRef<HTMLDivElement>(null);
-  useWebSocket(`group:${groupId}`);
 
-  useEffect(() => {
-    let cancelled = false;
-    GroupsAPI.getMessages(groupId).then((history) => !cancelled && setMessages(history));
-    return () => {
-      cancelled = true;
-    };
-  }, [groupId]);
-
-  useSocketEvent<ChatMessage & { type: string }>("group.message", (msg) => {
-    setMessages((prev) => [...prev, msg]);
-  });
+  usePolling(() => {
+    GroupsAPI.getMessages(groupId).then(setMessages);
+  }, 3000); // chat polls faster than other lists — 3s
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ block: "end" });
@@ -42,8 +23,7 @@ export function Chat({ groupId }: ChatProps) {
     const body = input;
     setInput("");
     await GroupsAPI.postMessage(groupId, body);
-    // The message will also arrive back via the websocket broadcast;
-    // no optimistic append here to avoid a duplicate entry.
+    GroupsAPI.getMessages(groupId).then(setMessages); // immediate refresh after sending
   };
 
   return (
