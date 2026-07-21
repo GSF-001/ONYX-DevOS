@@ -1,10 +1,10 @@
-import { createTerminalRegistry, type TerminalContext } from "./CommandRegistry";
 import { useCallback, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Console, type ConsoleLine } from "./Console";
 import { Prompt } from "./Prompt";
 import { parseCommandLine } from "./CommandParser";
-import { createTerminalRegistry, type TerminalContext } from "./CommandRegistry";
+import type { TerminalContext } from "./CommandRegistry";
+import { createTerminalRegistry } from "./TerminalCommands";
 import { getAutocompleteSuggestions, longestCommonPrefix } from "./AutoComplete";
 import { TerminalHistory } from "./TerminalHistory";
 import { useWindowManager } from "../window-manager";
@@ -104,8 +104,6 @@ export default function Terminal() {
     >
       <Console lines={lines} />
       <Prompt username={user?.login ?? "guest"} value={input} />
-      {/* Invisible input capturing keystrokes without rendering a native box,
-          keeping the retro fake-terminal look while staying accessible. */}
       <input
         autoFocus
         value={input}
