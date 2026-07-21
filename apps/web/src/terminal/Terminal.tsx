@@ -1,3 +1,4 @@
+import { createTerminalRegistry, type TerminalContext } from "./CommandRegistry";
 import { useCallback, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Console, type ConsoleLine } from "./Console";
