@@ -1,7 +1,6 @@
 import { HeroSection } from "./HeroSection";
 import { ValuePropBar } from "./ValuePropBar";
 import { FeatureGrid } from "./FeatureGrid";
-import { PricingSection } from "./PricingSection";
 import { Footer } from "./Footer";
 
 export function LandingPage() {
@@ -10,7 +9,6 @@ export function LandingPage() {
       <HeroSection />
       <ValuePropBar />
       <FeatureGrid />
-      <PricingSection />
       <Footer />
     </main>
   );
