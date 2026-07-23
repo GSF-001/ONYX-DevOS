@@ -21,3 +21,9 @@ export async function webhookPlugin(app: FastifyInstance): Promise<void> {
 
 export { dispatchWebhookEvent } from "./dispatcher.js";
 export { webhookQueue } from "./queue.js";
+
+export { onRelease, type ReleaseWebhookPayload } from "./onRelease.js";
+export { onWorkflow, type WorkflowRunWebhookPayload } from "./onWorkflow.js";
+export { onMember, type MemberWebhookPayload } from "./onMember.js";
+export { onLabel, type LabelWebhookPayload } from "./onLabel.js";
+export { onMilestone, type MilestoneWebhookPayload } from "./onMilestone.js";
