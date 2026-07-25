@@ -1,7 +1,8 @@
 <div align="center">
 
    
-      💫 ONYX — DevOS
+      💫 ONYX — DevOS 
+      Engineering Workstation for GitHub
  
  [ Engineering Workstation ]
 **Retro look. Modern power. Zero noise.**
