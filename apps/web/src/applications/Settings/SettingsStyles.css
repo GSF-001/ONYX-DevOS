@@ -1,0 +1,57 @@
+/* Layout */
+.settings-layout {
+  display: flex;
+  height: 100%;
+  background: var(--win-bg, #1e1e1e);
+  color: var(--win-text, #eaeaea);
+  font-family: var(--win-font, Tahoma, sans-serif);
+}
+
+/* Sidebar */
+.settings-sidebar {
+  width: 240px;
+  border-right: 1px solid var(--win-border, #444);
+  padding: 6px;
+  background: var(--win-sidebar-bg, #202020);
+}
+
+/* Item */
+.settings-sidebar-item {
+  padding: 8px 10px;
+  margin-bottom: 2px;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: background 0.15s ease;
+}
+
+/* Hover */
+.settings-sidebar-item:hover {
+  background: var(--win-hover, #2a2a2a);
+}
+
+/* Active (pakai class lo) */
+.settings-nav-active {
+  background: var(--win-titlebar-active, #0078d4);
+  color: white;
+}
+
+/* Optional: icon + text layout */
+.settings-sidebar-item span {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Content */
+.settings-content {
+  flex: 1;
+  padding: 14px;
+  overflow-y: auto;
+}
+
+/* Section title */
+.settings-content h3 {
+  margin-bottom: 10px;
+  font-size: 14px;
+  border-bottom: 1px solid var(--win-border, #444);
+  padding-bottom: 4px;
+}

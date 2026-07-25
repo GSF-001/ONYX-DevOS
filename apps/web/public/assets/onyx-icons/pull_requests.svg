@@ -1,0 +1,7 @@
+
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+<circle cx="14" cy="14" r="5" fill="#38BDF8"/>
+<circle cx="34" cy="34" r="5" fill="#38BDF8"/>
+<path d="M14 19V35M14 35C25 35 34 27 34 18V14" stroke="#38BDF8" stroke-width="3"/>
+<path d="M29 19L34 14L39 19" stroke="#22D3EE" stroke-width="3"/>
+</svg>

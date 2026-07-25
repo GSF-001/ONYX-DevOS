@@ -1,0 +1,28 @@
+{
+  "name": "onyx",
+  "version": "0.1.0",
+  "private": true,
+  "description": "ONYX Engineering Workstation — retro desktop OS for GitHub engineering analytics. Zero AI, zero heavy compute, just facts from your git data.",
+  "workspaces": [
+    "apps/server",
+    "apps/web"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace=apps/server & npm run dev --workspace=apps/web",
+    "dev:server": "npm run dev --workspace=apps/server",
+    "dev:web": "npm run dev --workspace=apps/web",
+    "build": "npm run build --workspace=apps/server && npm run build --workspace=apps/web",
+    "build:server": "npm run build --workspace=apps/server",
+    "build:web": "npm run build --workspace=apps/web",
+    "db:generate": "npm run db:generate --workspace=apps/server",
+    "db:migrate": "npm run db:migrate --workspace=apps/server",
+    "db:seed": "npm run db:seed --workspace=apps/server",
+    "lint": "npm run lint --workspace=apps/server && npm run lint --workspace=apps/web",
+    "typecheck": "npm run typecheck --workspace=apps/server && npm run typecheck --workspace=apps/web"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0"
+  },
+  "license": "MIT"
+}

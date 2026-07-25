@@ -1,0 +1,215 @@
+/* Dashboard-specific overrides layered on top of the shared theme tokens
+   from ../../theme — kept minimal since almost everything is themeable
+   via CSS variables already. */
+
+.dashboard-trend-bar {
+  transition: height 200ms ease;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Layout                                                                  */
+/* ---------------------------------------------------------------------- */
+
+.dashboard-body {
+  background: var(--win-field-bg);
+}
+
+.dashboard-main {
+  flex: 1;
+  min-width: 0;
+  overflow-y: auto;
+  padding: 10px;
+  background: var(--win-field-bg);
+}
+
+.dashboard-right {
+  width: 220px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px 10px 10px 0;
+  overflow-y: auto;
+  background: var(--win-field-bg);
+}
+
+.dashboard-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Sections                                                                */
+/* ---------------------------------------------------------------------- */
+
+.dashboard-section {
+  background: var(--win-face);
+  border-top: 1px solid var(--win-face-light);
+  border-left: 1px solid var(--win-face-light);
+  border-right: 1px solid var(--win-face-dark);
+  border-bottom: 1px solid var(--win-face-dark);
+  padding: 8px;
+}
+
+.dashboard-section-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  color: var(--win-text-dim);
+  margin: 0 0 8px 0;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--win-face-dark);
+}
+
+.dashboard-empty {
+  font-size: 12px;
+  color: var(--win-text-dim);
+  padding: 8px 2px;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Panels (inset Win95 "well")                                            */
+/* ---------------------------------------------------------------------- */
+
+.dashboard-panel {
+  background: var(--win-field-bg);
+  border-top: 1px solid var(--win-face-dark);
+  border-left: 1px solid var(--win-face-dark);
+  border-right: 1px solid var(--win-face-light);
+  border-bottom: 1px solid var(--win-face-light);
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.dashboard-widget {
+  padding: 0;
+  border: none;
+  background: transparent;
+}
+
+.dashboard-actions {
+  padding: 0;
+  border: none;
+  background: transparent;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Cards / grids                                                          */
+/* ---------------------------------------------------------------------- */
+
+.dashboard-grid,
+.dashboard-kpi,
+.dashboard-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 8px;
+}
+
+.dashboard-card {
+  background: var(--win-field-bg);
+  border-top: 1px solid var(--win-face-dark);
+  border-left: 1px solid var(--win-face-dark);
+  border-right: 1px solid var(--win-face-light);
+  border-bottom: 1px solid var(--win-face-light);
+  padding: 8px;
+}
+
+.dashboard-card-title {
+  font-size: 10px;
+  color: var(--win-text-dim);
+  margin: 0 0 4px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.dashboard-card-value {
+  font-size: 18px;
+  font-family: var(--win-font-mono);
+  font-weight: 700;
+  color: var(--win-text);
+  margin: 0;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Metric rows (label/value pairs)                                        */
+/* ---------------------------------------------------------------------- */
+
+.dashboard-metric {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  padding: 4px 0;
+  border-bottom: 1px solid var(--win-face-dark);
+}
+
+.dashboard-metric:last-child {
+  border-bottom: none;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Health / chart / feed section tweaks                                   */
+/* ---------------------------------------------------------------------- */
+
+.dashboard-health .dashboard-panel {
+  gap: 6px;
+}
+
+.dashboard-chart {
+  background: var(--win-face);
+}
+
+.dashboard-feed {
+  background: var(--win-face);
+}
+
+/* ---------------------------------------------------------------------- */
+/* Recent Pull Requests table                                             */
+/* ---------------------------------------------------------------------- */
+
+.dashboard-table {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--win-face-dark);
+  border-left: 1px solid var(--win-face-dark);
+  border-right: 1px solid var(--win-face-light);
+  border-bottom: 1px solid var(--win-face-light);
+}
+
+.dashboard-table-row {
+  display: grid;
+  grid-template-columns: 1fr auto auto auto;
+  gap: 10px;
+  align-items: center;
+  padding: 6px 8px;
+  font-size: 12px;
+  border-bottom: 1px solid var(--win-face-dark);
+}
+
+.dashboard-table-row:last-child {
+  border-bottom: none;
+}
+
+.dashboard-table-cell {
+  color: var(--win-text-dim);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dashboard-table-cell-title {
+  color: var(--win-text);
+  font-weight: 600;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Summary section                                                        */
+/* ---------------------------------------------------------------------- */
+
+.dashboard-summary .dashboard-summary-grid {
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+}
