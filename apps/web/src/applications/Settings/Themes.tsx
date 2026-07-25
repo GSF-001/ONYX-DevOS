@@ -6,12 +6,6 @@
  * Unauthorized use is strictly prohibited.
  */
 
-/**
- * ONYX DevOS
- * Copyright (c) 2026 GSF-001
- * All rights reserved.
- */
-
 import { useState } from "react";
 import type { useSettings } from "./SettingsHooks";
 
@@ -20,6 +14,29 @@ const ACCENT_COLORS = [
   "#3FB950", "#008080", "#3B82F6", "#8B5CF6",
   "#EC4899", "#808080",
 ];
+
+function ThemeMockup({ colors }: { colors: { titleBarActive: string; windowFace: string; text: string } }) {
+  return (
+    <div
+      style={{
+        width: "100%",
+        height: 64,
+        background: colors.windowFace,
+        border: "1px solid rgba(0,0,0,0.2)",
+        borderRadius: 2,
+        overflow: "hidden",
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
+      <div style={{ height: 10, background: colors.titleBarActive, flexShrink: 0 }} />
+      <div style={{ flex: 1, display: "flex", padding: 4, gap: 3 }}>
+        <div style={{ width: 12, height: "100%", background: colors.windowFace, border: `1px solid ${colors.text}22` }} />
+        <div style={{ flex: 1, background: colors.windowFace, border: `1px solid ${colors.text}22` }} />
+      </div>
+    </div>
+  );
+}
 
 export function Themes({ settings }: { settings: ReturnType<typeof useSettings> }) {
   const [accent, setAccent] = useState<string>(
@@ -40,34 +57,33 @@ export function Themes({ settings }: { settings: ReturnType<typeof useSettings> 
             key={theme.id}
             onClick={() => settings.setThemeId(theme.id)}
             style={{
-              width: 96,
-              padding: 8,
+              width: 110,
+              padding: 6,
               border:
                 theme.id === settings.themeId
                   ? "2px solid var(--win-accent)"
                   : "1px solid var(--win-face-dark)",
-              background: theme.colors.windowFace,
+              background: "var(--win-field-bg)",
               display: "flex",
               flexDirection: "column",
               gap: 6,
               alignItems: "center",
             }}
           >
-            <div
-              style={{
-                width: "100%",
-                height: 24,
-                background: theme.colors.titleBarActive,
-                borderRadius: 2,
+            <ThemeMockup
+              colors={{
+                titleBarActive: theme.colors.titleBarActive,
+                windowFace: theme.colors.windowFace,
+                text: theme.colors.text,
               }}
             />
-            <span style={{ fontSize: 11, color: theme.colors.text }}>{theme.label}</span>
+            <span style={{ fontSize: 11, color: "var(--win-text)" }}>{theme.label}</span>
           </button>
         ))}
       </div>
 
       <p style={{ fontSize: 11, color: "var(--win-text-dim)", marginBottom: 10 }}>ACCENT COLOR</p>
-      <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+      <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
         {ACCENT_COLORS.map((color) => (
           <button
             key={color}
@@ -76,7 +92,7 @@ export function Themes({ settings }: { settings: ReturnType<typeof useSettings> 
             style={{
               width: 28,
               height: 28,
-              borderRadius: "50%",
+              borderRadius: 2,
               background: color,
               border:
                 color === accent

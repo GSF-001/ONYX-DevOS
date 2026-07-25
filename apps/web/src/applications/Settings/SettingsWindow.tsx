@@ -6,12 +6,6 @@
  * Unauthorized use is strictly prohibited.
  */
 
-/**
- * ONYX DevOS
- * Copyright (c) 2026 GSF-001
- * All rights reserved.
- */
-
 import { useState } from "react";
 import type { useSettings } from "./SettingsHooks";
 import { Appearance } from "./Appearance";
@@ -23,7 +17,7 @@ import { About } from "./About";
 type Tab = "appearance" | "sounds" | "workspace" | "keyboard" | "about";
 
 const TABS: { id: Tab; label: string }[] = [
-  { id: "appearance", label: "Appearance" },
+  { id: "appearance", label: "SETTINGS" },
   { id: "sounds", label: "Sounds" },
   { id: "workspace", label: "Workspace" },
   { id: "keyboard", label: "Keyboard" },
@@ -34,19 +28,28 @@ export function SettingsWindow({ settings }: { settings: ReturnType<typeof useSe
   const [tab, setTab] = useState<Tab>("appearance");
 
   return (
-    <div style={{ display: "flex", height: "100%" }}>
-      <div style={{ width: 130, borderRight: "1px solid var(--win-face-dark)", padding: 4 }}>
+    <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
+      <div
+        style={{
+          display: "flex",
+          borderBottom: "1px solid var(--win-face-dark)",
+          background: "var(--win-face)",
+          flexShrink: 0,
+        }}
+      >
         {TABS.map((t) => (
           <div
             key={t.id}
             onClick={() => setTab(t.id)}
             style={{
-              padding: "6px 8px",
+              padding: "8px 16px",
               fontSize: 12,
+              fontWeight: tab === t.id ? 700 : 400,
               cursor: "default",
-              borderRadius: 2,
-              background: tab === t.id ? "var(--win-titlebar-active)" : "transparent",
-              color: tab === t.id ? "var(--win-titlebar-text)" : "inherit",
+              borderTop: "2px solid transparent",
+              borderBottom: tab === t.id ? "2px solid var(--win-accent)" : "2px solid transparent",
+              background: tab === t.id ? "var(--win-field-bg)" : "transparent",
+              color: "var(--win-text)",
             }}
           >
             {t.label}
