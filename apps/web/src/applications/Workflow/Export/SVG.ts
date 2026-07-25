@@ -1,3 +1,11 @@
+/**
+ * ONYX DevOS — Developer Operating System
+ * © 2026 GSF-001
+ *
+ * Proprietary Software.
+ * Unauthorized use is strictly prohibited.
+ */
+
 // SVG.ts — renders the full workflow graph to a standalone SVG string
 
 import { WorkflowDocument } from "../WorkflowTypes";

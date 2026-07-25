@@ -1,3 +1,11 @@
+/**
+ * ONYX DevOS — Developer Operating System
+ * © 2026 GSF-001
+ *
+ * Proprietary Software.
+ * Unauthorized use is strictly prohibited.
+ */
+
 // PNG.ts — rasterizes the workflow graph to a PNG using the Canvas 2D API
 
 import { WorkflowDocument, NODE_COLORS, AnyWorkflowNode } from "../WorkflowTypes";

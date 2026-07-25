@@ -1,3 +1,11 @@
+/**
+ * ONYX DevOS — Developer Operating System
+ * © 2026 GSF-001
+ *
+ * Proprietary Software.
+ * Unauthorized use is strictly prohibited.
+ */
+
 // Search.tsx — filters nodes by title/kind and centers the camera on the chosen result
 
 import React, { useMemo, useState } from "react";

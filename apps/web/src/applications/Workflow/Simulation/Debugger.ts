@@ -1,3 +1,11 @@
+/**
+ * ONYX DevOS — Developer Operating System
+ * © 2026 GSF-001
+ *
+ * Proprietary Software.
+ * Unauthorized use is strictly prohibited.
+ */
+
 // Debugger.ts — drives runWorkflow() step by step, pausing at breakpoints and animating edges
 
 import { workflowStore } from "../WorkflowStore";

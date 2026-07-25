@@ -1,3 +1,11 @@
+/**
+ * ONYX DevOS — Developer Operating System
+ * © 2026 GSF-001
+ *
+ * Proprietary Software.
+ * Unauthorized use is strictly prohibited.
+ */
+
 // SmartRouting.ts — computes a smooth cubic-bezier path between two node ports,
 // nudging the control points around any node whose bounding box the straight line would cross.
 

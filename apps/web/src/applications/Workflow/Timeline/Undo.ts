@@ -1,3 +1,11 @@
+/**
+ * ONYX DevOS — Developer Operating System
+ * © 2026 GSF-001
+ *
+ * Proprietary Software.
+ * Unauthorized use is strictly prohibited.
+ */
+
 // Undo.ts — thin wrapper exposing undo as an action + keyboard binding helper
 
 import { historyManager } from "./History";

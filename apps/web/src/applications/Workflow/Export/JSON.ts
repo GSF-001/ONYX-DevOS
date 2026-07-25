@@ -1,3 +1,11 @@
+/**
+ * ONYX DevOS — Developer Operating System
+ * © 2026 GSF-001
+ *
+ * Proprietary Software.
+ * Unauthorized use is strictly prohibited.
+ */
+
 // JSON.ts — serialize/deserialize a WorkflowDocument with validation
 
 import { WorkflowAPI } from "../WorkflowAPI";

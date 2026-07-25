@@ -1,3 +1,11 @@
+/**
+ * ONYX DevOS — Developer Operating System
+ * © 2026 GSF-001
+ *
+ * Proprietary Software.
+ * Unauthorized use is strictly prohibited.
+ */
+
 // Executor.ts — walks the workflow graph and actually executes node semantics.
 // Uses an async generator so the Debugger can step through frame-by-frame.
 

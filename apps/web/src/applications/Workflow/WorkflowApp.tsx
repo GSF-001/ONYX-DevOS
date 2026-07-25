@@ -1,3 +1,11 @@
+/**
+ * ONYX DevOS — Developer Operating System
+ * © 2026 GSF-001
+ *
+ * Proprietary Software.
+ * Unauthorized use is strictly prohibited.
+ */
+
 // WorkflowApp.tsx — top-level component composing toolbar, library, canvas, inspector, console
 
 import React, { useEffect, useState } from "react";

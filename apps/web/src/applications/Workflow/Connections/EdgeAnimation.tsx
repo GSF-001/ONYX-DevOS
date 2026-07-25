@@ -1,3 +1,11 @@
+/**
+ * ONYX DevOS — Developer Operating System
+ * © 2026 GSF-001
+ *
+ * Proprietary Software.
+ * Unauthorized use is strictly prohibited.
+ */
+
 // EdgeAnimation.tsx — marching-ants animated stroke used while an edge carries an active execution token
 
 import React from "react";

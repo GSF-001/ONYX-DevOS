@@ -1,3 +1,11 @@
+/**
+ * ONYX DevOS — Developer Operating System
+ * © 2026 GSF-001
+ *
+ * Proprietary Software.
+ * Unauthorized use is strictly prohibited.
+ */
+
 // NodeLibrary.tsx — draggable palette of node types; drop onto canvas to instantiate
 
 import React from "react";

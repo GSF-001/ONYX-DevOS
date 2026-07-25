@@ -1,3 +1,11 @@
+/**
+ * ONYX DevOS — Developer Operating System
+ * © 2026 GSF-001
+ *
+ * Proprietary Software.
+ * Unauthorized use is strictly prohibited.
+ */
+
 // WorkflowAPI.ts — persistence layer (localStorage-backed, swappable for a real backend)
 
 import { workflowStore } from "./WorkflowStore";

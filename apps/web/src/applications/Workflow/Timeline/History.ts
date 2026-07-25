@@ -1,3 +1,11 @@
+/**
+ * ONYX DevOS — Developer Operating System
+ * © 2026 GSF-001
+ *
+ * Proprietary Software.
+ * Unauthorized use is strictly prohibited.
+ */
+
 // History.ts — snapshot-based undo/redo stack over the workflow graph (nodes/edges/variables)
 
 import { workflowStore } from "../WorkflowStore";

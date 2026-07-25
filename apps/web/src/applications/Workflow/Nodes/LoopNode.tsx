@@ -1,3 +1,11 @@
+/**
+ * ONYX DevOS — Developer Operating System
+ * © 2026 GSF-001
+ *
+ * Proprietary Software.
+ * Unauthorized use is strictly prohibited.
+ */
+
 // LoopNode.tsx — repeats its outgoing branch while a condition holds, bounded by maxIterations
 
 import React from "react";

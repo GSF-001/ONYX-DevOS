@@ -1,3 +1,11 @@
+/**
+ * ONYX DevOS — Developer Operating System
+ * © 2026 GSF-001
+ *
+ * Proprietary Software.
+ * Unauthorized use is strictly prohibited.
+ */
+
 // Camera.tsx — pan/zoom transform state + coordinate conversion helpers
 
 import { useCallback, useRef } from "react";

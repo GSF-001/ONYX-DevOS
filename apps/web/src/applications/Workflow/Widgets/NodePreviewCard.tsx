@@ -1,3 +1,11 @@
+/**
+ * ONYX DevOS — Developer Operating System
+ * © 2026 GSF-001
+ *
+ * Proprietary Software.
+ * Unauthorized use is strictly prohibited.
+ */
+
 // NodePreviewCard.tsx — hover tooltip summarizing a node's config, used by Search/Layers/Minimap-style UI
 
 import React from "react";

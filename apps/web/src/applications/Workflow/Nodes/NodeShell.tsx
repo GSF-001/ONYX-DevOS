@@ -1,3 +1,11 @@
+/**
+ * ONYX DevOS — Developer Operating System
+ * © 2026 GSF-001
+ *
+ * Proprietary Software.
+ * Unauthorized use is strictly prohibited.
+ */
+
 // NodeShell.tsx — shared chrome (drag, ports, selection ring) wrapping every node kind
 
 import React, { useCallback, useRef } from "react";
