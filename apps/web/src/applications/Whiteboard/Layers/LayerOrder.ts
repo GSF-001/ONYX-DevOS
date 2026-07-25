@@ -1,3 +1,11 @@
+/**
+ * ONYX DevOS — Developer Operating System
+ * © 2026 GSF-001
+ *
+ * Proprietary Software.
+ * Unauthorized use is strictly prohibited.
+ */
+
 // Layers/LayerOrder.ts
 
 import { Layer, WhiteboardObject } from "../WhiteboardTypes";

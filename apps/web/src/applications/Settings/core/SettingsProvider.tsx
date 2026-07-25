@@ -6,6 +6,14 @@
  * Unauthorized use is strictly prohibited.
  */
 
+/**
+ * ONYX DevOS — Developer Operating System
+ * © 2026 GSF-001
+ *
+ * Proprietary Software.
+ * Unauthorized use is strictly prohibited.
+ */
+
 import { useEffect } from "react";
 import { initSettings } from "./SettingsEngine";
 

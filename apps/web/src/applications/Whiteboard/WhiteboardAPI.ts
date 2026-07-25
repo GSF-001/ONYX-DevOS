@@ -1,3 +1,11 @@
+/**
+ * ONYX DevOS — Developer Operating System
+ * © 2026 GSF-001
+ *
+ * Proprietary Software.
+ * Unauthorized use is strictly prohibited.
+ */
+
 // WhiteboardAPI.ts
 // High-level, ergonomic API that wraps the WhiteboardStore for consumers.
 

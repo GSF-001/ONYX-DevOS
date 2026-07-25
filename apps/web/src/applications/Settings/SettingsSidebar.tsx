@@ -6,7 +6,6 @@
  * Unauthorized use is strictly prohibited.
  */
 
-
 import React from "react";
 
 export type SettingsSection =

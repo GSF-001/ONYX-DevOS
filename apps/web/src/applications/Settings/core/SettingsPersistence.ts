@@ -6,6 +6,14 @@
  * Unauthorized use is strictly prohibited.
  */
 
+/**
+ * ONYX DevOS — Developer Operating System
+ * © 2026 GSF-001
+ *
+ * Proprietary Software.
+ * Unauthorized use is strictly prohibited.
+ */
+
 const STORAGE_KEY = "onyx_settings_v2";
 
 export type PersistedSettings = Record<string, any>;

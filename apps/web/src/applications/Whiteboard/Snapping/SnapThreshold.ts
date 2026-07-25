@@ -1,3 +1,11 @@
+/**
+ * ONYX DevOS — Developer Operating System
+ * © 2026 GSF-001
+ *
+ * Proprietary Software.
+ * Unauthorized use is strictly prohibited.
+ */
+
 // Snapping/SnapThreshold.ts
 
 export const DEFAULT_SNAP_THRESHOLD_PX = 8;

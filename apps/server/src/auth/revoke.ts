@@ -1,31 +1,17 @@
-/**
- * ONYX DevOS — Developer Operating System
- * © 2026 GSF-001
- *
- * Proprietary Software.
- * Unauthorized use is strictly prohibited.
- */
+// revoke.ts — revokes GitHub OAuth tokens/grants live via the GitHub Apps API.
+//
+// GitHub API reference:
+//   DELETE /applications/{client_id}/token   — revoke a single token
+//   DELETE /applications/{client_id}/grant   — revoke the whole app grant
+// Both require HTTP Basic auth using the OAuth app's client_id/client_secret.
+//
+// Access tokens live on `users.accessToken` (one GitHub token per user account),
+// not on a per-session `oauth_sessions` table — that table never existed.
 
-/**
- * ONYX DevOS
- * Copyright (c) 2026 GSF-001
- * All rights reserved.
- */
-
-import { db } from "../db/client";
-import { logger } from "../services/logger";
-
-/**
- * revoke.ts
- * Revokes GitHub OAuth tokens/grants live via the GitHub Apps API and
- * cleans up the corresponding oauth_sessions row(s). Used on explicit
- * logout, "disconnect GitHub", and account-deletion flows.
- *
- * GitHub API reference:
- *   DELETE /applications/{client_id}/token   — revoke a single token
- *   DELETE /applications/{client_id}/grant   — revoke the whole app grant
- * Both require HTTP Basic auth using the OAuth app's client_id/client_secret.
- */
+import { eq } from "drizzle-orm";
+import { db } from "../db/client.js";
+import { sessions, users } from "../db/schema.js";
+import { logger } from "../services/logger.js";
 
 const GITHUB_API_BASE = "https://api.github.com";
 const CLIENT_ID = process.env.GITHUB_CLIENT_ID ?? "";
@@ -38,7 +24,7 @@ if (!CLIENT_ID || !CLIENT_SECRET) {
 export class TokenRevocationError extends Error {
   constructor(
     message: string,
-    public readonly status?: number,
+    public readonly status?: number
   ) {
     super(message);
     this.name = "TokenRevocationError";
@@ -49,11 +35,6 @@ function basicAuthHeader(): string {
   return "Basic " + Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`).toString("base64");
 }
 
-/**
- * Revokes a single access token with GitHub. GitHub returns 204 on
- * success and 404 if the token was already invalid/revoked — both are
- * treated as success since the end state (token unusable) is the same.
- */
 export async function revokeAccessToken(accessToken: string): Promise<void> {
   const res = await fetch(`${GITHUB_API_BASE}/applications/${CLIENT_ID}/token`, {
     method: "DELETE",
@@ -79,11 +60,6 @@ export async function revokeAccessToken(accessToken: string): Promise<void> {
   throw new TokenRevocationError(`GitHub token revocation failed with ${res.status}`, res.status);
 }
 
-/**
- * Revokes the entire OAuth grant (all tokens issued to this user for the
- * app), which also removes ONYX from the user's "Authorized OAuth Apps"
- * list on GitHub. Used for full "disconnect account" flows.
- */
 export async function revokeGrant(accessToken: string): Promise<void> {
   const res = await fetch(`${GITHUB_API_BASE}/applications/${CLIENT_ID}/grant`, {
     method: "DELETE",
@@ -109,66 +85,45 @@ export async function revokeGrant(accessToken: string): Promise<void> {
   throw new TokenRevocationError(`GitHub grant revocation failed with ${res.status}`, res.status);
 }
 
-interface OAuthSessionRow {
-  id: string;
-  user_id: string;
-  access_token: string;
-}
-
-/**
- * Full logout-and-disconnect flow for a single session: revokes the
- * token with GitHub live, then deletes the oauth_sessions row so no
- * stale credentials remain in the database.
- */
-export async function revokeSession(sessionId: string): Promise<{ userId: string }> {
-  const { rows } = await db.query<OAuthSessionRow>(
-    `select id, user_id, access_token from oauth_sessions where id = $1 limit 1`,
-    [sessionId],
-  );
-  const session = rows[0];
+export async function revokeSession(sessionId: string): Promise<{ userId: number }> {
+  const [session] = await db.select().from(sessions).where(eq(sessions.id, sessionId));
 
   if (!session) {
-    throw new TokenRevocationError(`No oauth_sessions row found for id ${sessionId}`);
+    throw new TokenRevocationError(`No session row found for id ${sessionId}`);
   }
 
-  await revokeAccessToken(session.access_token);
+  const [user] = await db.select().from(users).where(eq(users.id, session.userId));
 
-  await db.query(`delete from oauth_sessions where id = $1`, [sessionId]);
+  if (!user) {
+    throw new TokenRevocationError(`No user row found for id ${session.userId}`);
+  }
 
-  logger.info("revoke.revokeSession: session revoked and deleted", {
+  await revokeAccessToken(user.accessToken);
+
+  logger.info("revoke.revokeSession: GitHub token revoked for session", {
     sessionId,
-    userId: session.user_id,
+    userId: user.id,
   });
 
-  return { userId: session.user_id };
+  return { userId: user.id };
 }
 
-/**
- * Full account-disconnect flow: revokes the entire GitHub grant (all
- * ONYX sessions for that user become invalid on GitHub's side too),
- * then wipes every oauth_sessions row belonging to the user locally.
- */
-export async function revokeAllSessionsForUser(userId: string): Promise<{ sessionsRemoved: number }> {
-  const { rows } = await db.query<OAuthSessionRow>(
-    `select id, user_id, access_token from oauth_sessions where user_id = $1`,
-    [userId],
-  );
+export async function revokeAllSessionsForUser(userId: number): Promise<{ sessionsRemoved: number }> {
+  const [user] = await db.select().from(users).where(eq(users.id, userId));
 
-  if (rows.length === 0) {
-    logger.info("revoke.revokeAllSessionsForUser: no sessions found", { userId });
+  if (!user) {
+    logger.info("revoke.revokeAllSessionsForUser: no user found", { userId });
     return { sessionsRemoved: 0 };
   }
 
-  // Revoking the grant on any one of the user's tokens invalidates the
-  // whole grant on GitHub's side, so a single call suffices.
-  await revokeGrant(rows[0].access_token);
+  await revokeGrant(user.accessToken);
 
-  const { rowCount } = await db.query(`delete from oauth_sessions where user_id = $1`, [userId]);
+  const removed = await db.delete(sessions).where(eq(sessions.userId, userId)).returning();
 
   logger.info("revoke.revokeAllSessionsForUser: all sessions revoked and deleted", {
     userId,
-    sessionsRemoved: rowCount,
+    sessionsRemoved: removed.length,
   });
 
-  return { sessionsRemoved: rowCount };
+  return { sessionsRemoved: removed.length };
 }

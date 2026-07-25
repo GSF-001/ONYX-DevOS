@@ -1,3 +1,11 @@
+/**
+ * ONYX DevOS — Developer Operating System
+ * © 2026 GSF-001
+ *
+ * Proprietary Software.
+ * Unauthorized use is strictly prohibited.
+ */
+
 // WhiteboardHooks.ts
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";

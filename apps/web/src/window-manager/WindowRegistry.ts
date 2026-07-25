@@ -162,6 +162,26 @@ export const WINDOW_REGISTRY: Record<string, WindowAppDefinition> = {
     defaultHeight: 600,
     component: lazy(() => import("../applications/GitGraph")),
   },
+  workflow: {
+    id: "workflow",
+    title: "Workflow",
+    icon: "workflow",
+    defaultWidth: 900,
+    defaultHeight: 600,
+    component: lazy(() =>
+      import("../applications/Workflow").then((m) => ({ default: m.WorkflowApp }))
+    ),
+  },
+  whiteboard: {
+    id: "whiteboard",
+    title: "Whiteboard",
+    icon: "whiteboard",
+    defaultWidth: 900,
+    defaultHeight: 600,
+    component: lazy(() =>
+      import("../applications/Whiteboard").then((m) => ({ default: m.WhiteboardApp }))
+    ),
+  },
 };
 
 export function getWindowDefaults(appId: string) {

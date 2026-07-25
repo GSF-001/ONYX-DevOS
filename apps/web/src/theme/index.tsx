@@ -192,8 +192,8 @@ function buildThemeCss(theme: Theme): string {
 
     .win-body {
       flex: 1;
-      background: white;
-      color: black;
+      background: var(--win-field-bg);
+      color: var(--win-text);
       overflow: auto;
     }
 
@@ -214,9 +214,24 @@ function buildThemeCss(theme: Theme): string {
       padding: 6px 4px;
       cursor: default;
       user-select: none;
-      border-radius: var(--win-radius);
+      border-radius: 2px;
+      outline: 1px dotted transparent;
+      outline-offset: -3px;
+      transition: background 0.08s ease;
+    }
+    .win-icon:hover {
+      background: rgba(255,255,255,0.08);
     }
     .win-icon.selected {
+      background: rgba(49,106,197,0.35);
+      outline: 1px dotted rgba(255,255,255,0.9);
+    }
+    .win-icon-glyph {
+      filter: drop-shadow(1px 2px 2px rgba(0,0,0,0.5));
+      transition: transform 0.08s ease;
+    }
+    .win-icon:active .win-icon-glyph {
+      transform: translateY(1px);
     }
     .win-icon-label {
       font-size: 11px;
@@ -224,6 +239,11 @@ function buildThemeCss(theme: Theme): string {
       text-align: center;
       text-shadow: 0 1px 2px rgba(0,0,0,0.6);
       line-height: 1.2;
+      padding: 1px 4px;
+      border-radius: 1px;
+    }
+    .win-icon.selected .win-icon-label {
+      background: rgba(49,106,197,0.55);
     }
 
     .context-menu {
@@ -255,6 +275,35 @@ function buildThemeCss(theme: Theme): string {
       padding: 10px 14px;
       font-size: 12px;
       color: var(--win-text);
+    }
+
+    
+    .win-taskbar {
+      background: linear-gradient(180deg, var(--win-face-light) 0%, var(--win-face) 8%, var(--win-face) 100%);
+      border-top: 1px solid #ffffff;
+      box-shadow:
+        0 -1px 0 #808080 inset,
+        0 -3px 6px rgba(0,0,0,0.35);
+    }
+    .win-taskbar-divider {
+      align-self: stretch;
+      width: 2px;
+      margin: 3px 2px;
+      border-left: 1px solid #808080;
+      border-right: 1px solid #ffffff;
+    }
+    .win-infobar-divider {
+      width: 1px;
+      align-self: stretch;
+      margin: 2px 0;
+      background: var(--win-face-dark);
+      box-shadow: 1px 0 0 var(--win-face-light);
+    }
+
+    
+    @keyframes onyx-caret-blink {
+      0%, 50% { opacity: 1; }
+      50.01%, 100% { opacity: 0; }
     }
 
     ${theme.scanlines ? SCANLINE_OVERLAY_CSS : ""}

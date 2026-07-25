@@ -1,16 +1,4 @@
-/**
- * ONYX DevOS — Developer Operating System
- * © 2026 GSF-001
- *
- * Proprietary Software.
- * Unauthorized use is strictly prohibited.
- */
-
-/**
- * ONYX DevOS
- * Copyright (c) 2026 GSF-001
- * All rights reserved.
- */
+// Taskbar.tsx — bottom system taskbar with grooved section dividers for depth
 
 import { useState } from "react";
 import { StartButton } from "./StartButton";
@@ -18,6 +6,7 @@ import { StartMenu } from "./StartMenu";
 import { QuickLaunch } from "./QuickLaunch";
 import { RunningApps } from "./RunningApps";
 import { Tray } from "./Tray";
+import { QuickSettingsButton } from "./QuickSettingsButton";
 import { useWindowManager } from "../window-manager";
 import { TOKENS } from "../theme";
 
@@ -27,18 +16,17 @@ export function Taskbar() {
 
   return (
     <div
+      className="win-taskbar"
       style={{
         position: "fixed",
         left: 0,
         right: 0,
         bottom: 0,
         height: TOKENS.desktop.taskbarHeight,
-        background: "var(--win-face)",
-        borderTop: "2px solid var(--win-face-light)",
         display: "flex",
         alignItems: "stretch",
-        gap: 6,
-        padding: "0 4px",
+        gap: 4,
+        padding: "3px 4px",
         zIndex: TOKENS.zIndex.contextMenu - 100,
       }}
     >
@@ -49,7 +37,11 @@ export function Taskbar() {
         )}
       </div>
 
+      <span className="win-taskbar-divider" />
+
       <QuickLaunch onOpenApp={manager.open} />
+
+      <span className="win-taskbar-divider" />
 
       <RunningApps
         windows={manager.windows}
@@ -60,6 +52,14 @@ export function Taskbar() {
           else manager.focus(id);
         }}
       />
+
+      <div style={{ flex: 1 }} />
+
+      <span className="win-taskbar-divider" />
+
+      <QuickSettingsButton onOpenApp={manager.open} />
+
+      <span className="win-taskbar-divider" />
 
       <Tray />
     </div>

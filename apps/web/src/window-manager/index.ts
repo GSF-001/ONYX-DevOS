@@ -36,4 +36,5 @@ export { restoreWindow } from "./Restore";
 export { WindowHistory } from "./WindowHistory";
 export { saveWindowLayout, loadWindowLayout, clearWindowLayout, type PersistedLayout } from "./WindowPersistence";
 export { useWindowShortcuts } from "./WindowShortcuts";
+export { getShortcutsEnabled, setShortcutsEnabled } from "./ShortcutsFlag";
 export { useAutoFocusElement, useClickOutside } from "./WindowEffects";

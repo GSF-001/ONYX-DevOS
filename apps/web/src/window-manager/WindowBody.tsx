@@ -24,18 +24,19 @@ export function WindowBody({ Component }: WindowBodyProps) {
     <div
       className="win-body"
       style={{
-        background: "#d4d0c8",
+        background: "var(--win-face)",
         padding: 8,
         overflow: "auto",
       }}
     >
       <div
         style={{
-          background: "#ffffff",
-          borderTop: "2px solid #808080",
-          borderLeft: "2px solid #808080",
-          borderRight: "2px solid #ffffff",
-          borderBottom: "2px solid #ffffff",
+          background: "var(--win-field-bg)",
+          color: "var(--win-text)",
+          borderTop: "2px solid var(--win-face-dark)",
+          borderLeft: "2px solid var(--win-face-dark)",
+          borderRight: "2px solid var(--win-face-light)",
+          borderBottom: "2px solid var(--win-face-light)",
           minHeight: "100%",
           padding: 12,
         }}

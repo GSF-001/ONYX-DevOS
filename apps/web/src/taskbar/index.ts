@@ -18,6 +18,7 @@ export { StartMenu } from "./StartMenu";
 export { RunningApps } from "./RunningApps";
 export { QuickLaunch } from "./QuickLaunch";
 export { Tray } from "./Tray";
+export { QuickSettingsButton } from "./QuickSettingsButton";
 export { Clock } from "./Clock";
 export { Calendar } from "./Calendar";
 export { LiveIndicator } from "./LiveIndicator";

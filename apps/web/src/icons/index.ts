@@ -29,6 +29,8 @@ import { CommunityIcon } from "./Community";
 import { GroupsIcon } from "./Groups";
 import { ProfileIcon } from "./Profile";
 import { GitGraphIcon } from "./GitGraph";
+import { WorkflowIcon } from "./Workflow";
+import { WhiteboardIcon } from "./Whiteboard";
 
 export const APP_ICONS: Record<string, ComponentType> = {
   dashboard: DashboardIcon,
@@ -47,10 +49,13 @@ export const APP_ICONS: Record<string, ComponentType> = {
   groups: GroupsIcon,
   profile: ProfileIcon,
   gitGraph: GitGraphIcon,
+  workflow: WorkflowIcon,
+  whiteboard: WhiteboardIcon,
 };
 
 export {
   DashboardIcon, RepositoryIcon, PullRequestsIcon, ReviewsIcon, IssuesIcon,
   InsightsIcon, TeamIcon, ReportsIcon, HeatmapIcon, ActivityIcon,
   TerminalIcon, SettingsIcon, CommunityIcon, GroupsIcon, ProfileIcon, GitGraphIcon,
+  WorkflowIcon, WhiteboardIcon,
 };

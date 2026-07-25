@@ -15,6 +15,7 @@
 import { useEffect } from "react";
 import type { WindowAction, WindowState } from "./WindowContext";
 import { WindowHistory } from "./WindowHistory";
+import { getShortcutsEnabled } from "./ShortcutsFlag";
 
 /**
  * Global keyboard shortcuts for the window manager: Ctrl/Cmd+W closes the
@@ -28,6 +29,7 @@ export function useWindowShortcuts(
 ): void {
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
+      if (!getShortcutsEnabled()) return;
       const focused = state.windows.find((w) => w.id === state.focusedId);
 
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "w" && focused) {
