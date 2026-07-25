@@ -1,0 +1,86 @@
+/* WhiteboardStyles.css */
+
+.wb-app,
+.wb-app * {
+  box-sizing: border-box;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.wb-app {
+  background: #fafbfc;
+  color: #1c1f26;
+}
+
+.wb-infinite-canvas {
+  background-color: #fafbfc;
+}
+
+.wb-infinite-canvas:active {
+  cursor: grabbing;
+}
+
+.wb-toolbar button:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.wb-layer-item:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.wb-layer-item--active {
+  background: rgba(77, 124, 254, 0.12) !important;
+}
+
+.wb-template-item:active {
+  transform: scale(0.98);
+}
+
+.wb-selection-box {
+  transition: none;
+}
+
+.wb-window {
+  border: 1px solid #e6e8ec;
+}
+
+.wb-window__titlebar button:hover {
+  filter: brightness(0.9);
+}
+
+.wb-zoom-controls button:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.wb-color-swatch button:hover {
+  transform: scale(1.08);
+}
+
+::selection {
+  background: rgba(77, 124, 254, 0.25);
+}
+
+.wb-object textarea,
+.wb-object input {
+  font-family: inherit;
+}
+
+.wb-ruler-horizontal,
+.wb-ruler-vertical {
+  user-select: none;
+  pointer-events: none;
+}
+
+@keyframes wb-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.wb-template-gallery-overlay > div {
+  animation: wb-fade-in 140ms ease-out;
+}
