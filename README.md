@@ -18,18 +18,20 @@ WORK
 
 </div>
 
-<p align="center"><a href="./LICENSE"><img src="https://img.shields.io/github/license/GSF-001/ONYX-DevOS?style=for-the-badge&label=LICENSE&labelColor=000000&color=6e6e6e" /></a> <a href="#05--architecture"><img src="https://img.shields.io/badge/STATUS-OPERATIONAL-00C853?style=for-the-badge&labelColor=000000" /></a></p>
+<p align="center"><a href="./LICENSE"><img src="https://img.shields.io/github/license/GSF-001/ONYX-DevOS?style=for-the-badge&label=LICENSE&labelColor=000000&color=6e6e6e" /></a> <a href="#05--architecture"><img src="https://img.shields.io/badge/STATUS-IN%20DEVELOPMENT-F9A825?style=for-the-badge&labelColor=000000" /></a></p>
 
 ---
 
 ## `01` · Overview
 
-**ONYX** is not just another GitHub dashboard. ONYX is an **operating system built for engineering teams** — complete with a boot screen, desktop, window manager, terminal, and modular applications (*Repository, Pull Requests, Reviews, Insights, Team, Reports, Heatmap*) that all run **in real time** through GitHub webhooks.
+**ONYX** is not just another GitHub dashboard. ONYX is an **operating system built for engineering teams** — complete with a boot screen, desktop, window manager, terminal, and modular applications that all run **in real time** through GitHub webhooks.
 
 <div align="center">
 
   ##### ONYX Preview
 ![alt text](https://github.com/GSF-001/ONYX-DevOS/blob/main/file_00000000f1a47207bac6f5d32a9630bd.png?)
+
+</div>
 
 ---
 
@@ -47,10 +49,16 @@ No AI API key to buy, no subscription to an LLM. Every insight (*Bus Factor, Rev
 |---|---|
 | `DESKTOP` | Not a page — a window. Open multiple applications at once, drag, resize, snap into layout |
 | `LIVE SYNC` | Every piece of data stays connected in real time via GitHub webhooks + WebSocket, no manual refresh |
-| `INSIGHTS` | Bus Factor, Review Health, Commit Decay, Stale Radar, Reciprocity Gap, Weekend Heatmap |
+| `INSIGHTS` | Bus Factor, Review Health, Commit Decay, Issue Graveyard, Reviewer Gap, Weekend Heatmap |
 | `COMMAND PALETTE` | `Ctrl+K` for power users — open apps, jump to a PR, copy a link, export, all without touching the mouse |
-| `THEME ENGINE` | Three visual themes: CRT (retro), Modern, Pixel |
+| `THEME ENGINE` | Multiple visual themes: CRT (retro), Modern, Pixel, Dark |
 | `AUTH` | Native GitHub OAuth — log in and authorize repositories directly, no separate account |
+| `IDENTITY` | Auto-generated avatar identity per user, with cooldown-based regeneration |
+| `SOUND` | Full UI sound system — boot, clicks, drag/drop, window events, notifications |
+| `TERMINAL` | In-desktop terminal with command parser, autocomplete, and history |
+| `WHITEBOARD` | Infinite canvas with layers, snapping, guides, and shape templates |
+| `WORKFLOW` | Node-based flow builder with simulation/debugger support |
+| `COMMUNITY / GROUPS` | Social layer — discussions, leaderboards, showcases, public/private groups |
 
 ---
 
@@ -70,7 +78,6 @@ No AI API key to buy, no subscription to an LLM. Every insight (*Bus Factor, Rev
 
    ![alt text](https://github.com/GSF-001/ONYX-DevOS/blob/main/file_0000000015d87207a831da887cf158d3.png?raw=true)
 
-
 </details>
 
 ---
@@ -84,6 +91,8 @@ flowchart LR
         A --> B[Boot Sequence]
         B --> D[Desktop]
         D --> WM[Window Manager]
+        D --> TB[Taskbar]
+        D --> CP[Command Palette]
         WM --> APP[Applications]
     end
 
@@ -133,20 +142,50 @@ server/src/
 └── index.ts         # Entrypoint: auto-migrate → listen
 
 web/src/
-├── auth/            # OAuth callback, repository authorization, auth guard
-├── boot/            # Boot sequence, shutdown/restart screen
-├── landing/         # Public marketing page before login
-├── window-manager/  # Window frame, drag/resize/snap, menu bar
-├── websocket/       # Socket client, provider, event subscription hook
-├── theme/           # Design tokens + 3 themes (CRT / Modern / Pixel)
-├── shared/          # Components, hooks, API client, types, utils shared across apps
-└── App.tsx / main.tsx / router.tsx / index.css
+├── App.tsx / main.tsx / router.tsx / index.css
+├── applications/     # Every desktop app, each self-contained (API, store, hooks, styles, window)
+│   ├── Activity/         # Live feed, timeline, filters
+│   ├── Community/        # Discussions, leaderboard, showcase, trending
+│   ├── Dashboard/        # Overview, quick launch, insight feed, connect-repo modal
+│   ├── GitGraph/         # Branch/commit topology visualizer
+│   ├── Groups/           # Public/private groups, chat, files, announcements
+│   ├── Heatmap/          # Commit / review / weekend heatmaps
+│   ├── Insights/         # Bus Factor, Commit Decay, Review Health, Reviewer Gap
+│   ├── Issues/           # Open/closed issues, labels, milestones, assignees
+│   ├── Profile/
+│   ├── PullRequests/     # Open/draft/merged/closed PRs, risk analysis, timeline
+│   ├── Reports/          # Weekly/monthly/quarterly, CSV & PDF export
+│   ├── Repository/       # Branches, commits, contributors, releases, tags
+│   ├── Reviews/          # Review queue, reviewer load, timeline
+│   ├── Settings/         # Appearance, keyboard, sound, workspace, integrations
+│   ├── Team/             # Bus factor, contribution, leaderboard, reviewer load
+│   ├── Terminal/         # Command console with parser & history
+│   ├── Whiteboard/       # Infinite canvas: layers, guides, snapping, templates
+│   └── Workflow/         # Node-based flow builder + simulation/debugger
+├── assets/           # Icons, mascot art, boot imagery
+├── audio/            # SoundManager + per-event sound modules
+├── auth/             # OAuth callback, repository authorization, auth guard
+├── boot/             # Boot sequence, shutdown/restart screens
+├── command-palette/  # Ctrl+K palette, command list & search
+├── cursor/           # Custom cursor themes & effects
+├── desktop/          # Desktop context menu
+├── icons/            # App icon set
+├── identity/         # Auto-generated user identity/avatar system
+├── landing/          # Public marketing page before login
+├── mascot/           # Animated mascot states (idle, happy, error, etc.)
+├── notifications/    # Toasts, alerts, live PR/issue/review notifications
+├── pages/            # Route-level pages (desktop, features, 404)
+├── shared/           # API client, components, hooks, types, utils shared across apps
+├── taskbar/          # Clock, tray, quick launch, system status, start menu
+├── terminal/          # Lower-level terminal engine (parser, registry, history)
+├── theme/            # Design tokens + themes (CRT / Modern / Pixel / Dark)
+├── websocket/        # Socket client, provider, event subscription hook
+├── window-manager/   # Window frame, drag/resize/snap, focus, z-index, shortcuts
+└── workspace-setup/  # Create workspace & repository setup flow
 ```
 </details>
 
-> The tree above only covers what's implemented so far. The full planned structure (including `applications/`, `taskbar/`, `terminal/`, `desktop/`, and more) lives in [`struktur.md`](./struktur%100.md).
-
-> 📌 Full structure (including `applications/`, `taskbar/`, `terminal/`, etc.) is documented in [`struktur.md`]
+> Structure above reflects the current state of `apps/web`. Some applications are scaffolded end-to-end (components, store, hooks, API layer) but not yet fully wired to live backend data — see Roadmap below.
 
 ---
 
@@ -203,15 +242,17 @@ npm run dev
 | `DONE` | Database schema + auto-migration |
 | `DONE` | Webhook pipeline (verify → parse → dispatch → handlers) |
 | `DONE` | WebSocket real-time layer |
-| `PLANNED` | Scoring engine (Bus Factor, Review Health, Commit Decay, etc.) |
-| `PLANNED` | REST routes (dashboard, repository, PRs, reviews, insights, etc.) |
-| `PLANNED` | Landing page |
-| `PLANNED` | Boot sequence + Desktop + Window Manager |
-| `PLANNED` | Applications (Dashboard, Repository, PRs, Reviews, Issues, Insights, Team, Reports, Heatmap, Terminal) |
-| `PLANNED` | Command Palette (`Ctrl+K`) |
-| `PLANNED` | Settings (theme switcher: CRT / Modern / Pixel) |
+| `DONE` | Boot sequence + Desktop + Window Manager |
+| `DONE` | Taskbar + Command Palette (`Ctrl+K`) |
+| `DONE` | Theme engine (CRT / Modern / Pixel / Dark) |
+| `DONE` | Application shells scaffolded (Dashboard, Repository, PRs, Reviews, Issues, Insights, Team, Reports, Heatmap, Terminal, Activity, Community, Groups, Whiteboard, Workflow, GitGraph, Settings, Profile) |
+| `IN PROGRESS` | Scoring engine (Bus Factor, Review Health, Commit Decay, etc.) wired to live data |
+| `IN PROGRESS` | REST routes (dashboard, repository, PRs, reviews, insights, etc.) |
+| `PLANNED` | Full end-to-end data wiring for every application module |
+| `PLANNED` | Reports export (CSV / PDF) |
+| `PLANNED` | Public launch / hosted demo |
 
-Detailed progress is tracked in [Issues](../../issues) 
+Detailed progress is tracked in [Issues](../../issues)
 
 ---
 
