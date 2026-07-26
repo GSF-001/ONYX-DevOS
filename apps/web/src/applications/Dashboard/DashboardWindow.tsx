@@ -84,7 +84,7 @@ export function DashboardWindow({ data }: DashboardWindowProps) {
   };
 
   return (
-    <div className="win-desktop" style={{ display: "flex", flexDirection: "column", height: "100%" }}>
+    <div className="win-desktop" style={{ display: "flex", flexDirection: "column", height: "100%", minHeight: 0 }}>
       <DashboardToolbar onRefresh={() => void data.reload()} onOpenInsights={() => manager.open("insights")} />
       <DashboardHeader
         repository={selectedRepo as any}

@@ -28,7 +28,6 @@ export function DashboardSidebar({ repositories, selectedId, onSelect, onConnect
         width: 150,
         borderRight: "1px solid var(--win-face-dark)",
         padding: 6,
-        overflowY: "auto",
         display: "flex",
         flexDirection: "column",
       }}
@@ -63,7 +62,7 @@ export function DashboardSidebar({ repositories, selectedId, onSelect, onConnect
       <button
         className="win-button"
         onClick={onConnectNew}
-        style={{ width: "auto", padding: "5px 8px", fontSize: 11, marginTop: 8 }}
+        style={{ width: "100%", padding: "5px 8px", fontSize: 11, marginTop: 8 }}
       >
         + Connect Repository
       </button>

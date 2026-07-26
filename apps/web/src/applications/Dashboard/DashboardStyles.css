@@ -17,9 +17,11 @@
 .dashboard-main {
   flex: 1;
   min-width: 0;
-  overflow-y: auto;
-  padding: 10px;
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
   background: var(--win-field-bg);
+  touch-action: pan-y;
 }
 
 .dashboard-right {
@@ -212,4 +214,14 @@
 
 .dashboard-summary .dashboard-summary-grid {
   grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+}
+
+/* ---------------------------------------------------------------------- */
+/* Column alignment fix — prevent short columns (sidebar/right) from      */
+/* stretching to match the tall scrollable main column, which left blank  */
+/* space below their content.                                             */
+/* ---------------------------------------------------------------------- */
+
+.dashboard-right {
+  align-self: flex-start;
 }

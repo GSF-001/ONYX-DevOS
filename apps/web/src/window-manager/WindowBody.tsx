@@ -26,7 +26,8 @@ export function WindowBody({ Component }: WindowBodyProps) {
       style={{
         background: "var(--win-face)",
         padding: 8,
-        overflow: "auto",
+        overflow: "hidden",
+        display: "flex",
       }}
     >
       <div
@@ -37,8 +38,14 @@ export function WindowBody({ Component }: WindowBodyProps) {
           borderLeft: "2px solid var(--win-face-dark)",
           borderRight: "2px solid var(--win-face-light)",
           borderBottom: "2px solid var(--win-face-light)",
-          minHeight: "100%",
+          height: "100%",
+          width: "100%",
           padding: 12,
+          display: "flex",
+          flexDirection: "column",
+          overflow: "hidden",
+          flex: 1,
+          minHeight: 0,
         }}
       >
         <Suspense
